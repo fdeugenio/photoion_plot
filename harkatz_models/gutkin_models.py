@@ -25,8 +25,8 @@ def read_gutkin_models(input_filename=None,
     param2: str, ratio of two column names
         E.g. logU/logn, but ideally two emission-line fluxes
     downsample: dict of {'colname': value or range,}
-        E.g. downsample={'logU': (-4, -3.5, -3), 'lnh': 1} will return the
-        grid only for these values (removing logU>-3, lnh>1).
+        E.g. downsample={'logU': (-4, -3), 'logn': 1} will return the
+        grid only for these values (removing logU>-3, logn>1).
     print_ranges: bool
         If set, print the range in all the physical parameters.
 
@@ -36,12 +36,12 @@ def read_gutkin_models(input_filename=None,
     grid : nd float array with the model values.
         The grid has shape
         (n1, n2, n3, n4, n5, n6, 8), where
-        n1 - number of unique `Mup` values (0, 1) [0: single, 1: binary]
-        n2 - number of unique `C` values (3, 5) [Myr]
-        n3 - number of unique `xi` values (3, 5) [Myr]
+        n1 - number of unique `Mup` values (100, 300) [MSun]
+        n2 - number of unique `C/O` values 0.10--1.40 [C/O_Sun]
+        n3 - number of unique `xi` values (0.1, 0.5) [1]
         n4 - number of unique `Z` values (0.001, 0.002, ..., 0.04) [mass fraction TBC]
-        n5 - number of unique `logn` values (1, 1.5, ..., 3) [dex cm^{-3}]
-        n6 - number of unique `logU` values (-4, -3.5, ..., -0.5) [dex]
+        n5 - number of unique `logn` values (1, 2, ..., 4) [dex cm^{-3}]
+        n6 - number of unique `logU` values (-4, -3, ..., -1) [dex]
         8  - number of physical parameters (6) + number of emission-line ratios (2)
 
     Examples
@@ -50,7 +50,7 @@ def read_gutkin_models(input_filename=None,
     Grid with [OIII]5007/H\beta and [NII]6584/H\alpha as a function of all parameters.
     >>> grid0 = read_gutkin_models()
 
-    For logU=-4, logn=1, Z=0.001, ssp=0, age=5:
+    For logU=-4, logn=1, Z=0.001, xi=0.1, C/O=1, Mup=100
     [OIII]5007/H\beta is grid0[0, 0, 0, 0, 0, 5]
     [NII]6584/H\alpha is grid0[0, 0, 0, 0, 0, 6]
     ssp  can be read from grid0[0, 0, 0, 0, 0, 0]
@@ -80,7 +80,7 @@ def read_gutkin_models(input_filename=None,
     >>> grid1 = read_gutkin_models(
     >>>     param1="OIII5007/Hbeta",
     >>>     param2="NeIII3869/OII3727",
-    >>>     downsample={'logU': (-2.5, -2., -1.5, -1, -0.5), 'Mup': 100, 'logn': 2, 'C': 100})
+    >>>     downsample={'logU': (-2.5, -2., -1.5, -1, -0.5), 'Mup': 100, 'logn': 2, 'C/O': 1})
     
     """
 
@@ -96,7 +96,7 @@ def read_gutkin_models(input_filename=None,
     for tab,filename in zip(gutkintab, input_filenames):
         carbon_str = re.search(r'C[0-9]{1,}_', filename)
         assert carbon_str, f'Did not find C in string {filename}'
-        tab['C'] = float(carbon_str.group()[1:-1])
+        tab['C/O'] = float(carbon_str.group()[1:-1])/100.
     for tab,filename in zip(gutkintab, input_filenames):
         imf_mup = re.search(r'mup(1|3)00\.', filename)
         assert imf_mup, f'Did not find mup in string {filename}'
@@ -118,10 +118,10 @@ def read_gutkin_models(input_filename=None,
     gutkintab['lnh'].name = 'logn'
 
     # These are the physical parameters of the grid, e.g. Z, logU, etc.
-    phypar = ('logU', 'logn', 'Z', 'xi', 'Mup', 'C')
+    phypar = ('logU', 'logn', 'Z', 'xi', 'Mup', 'C/O')
     # Because of how the table is written, this poor programmer has to
     # transpose everything.
-    phypar = ('Mup', 'C', 'xi', 'Z', 'logn', 'logU')
+    phypar = ('Mup', 'C/O', 'xi', 'Z', 'logn', 'logU')
 
     if print_ranges:
         print('Grid parameters (*before* downsample keyword)')
@@ -148,7 +148,7 @@ def read_gutkin_models(input_filename=None,
 
     # Because of how the table is written, this poor programmer has to
     # transpose everything.
-    phypar = ('Mup', 'C', 'xi', 'Z', 'logn', 'logU')
+    phypar = ('Mup', 'C/O', 'xi', 'Z', 'logn', 'logU')
     gutkintab.sort(keys=phypar)
 
     # Prepare the output grid.

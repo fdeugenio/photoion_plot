@@ -19,7 +19,7 @@ def example_plot_ssp_metal_logu_interp_roberta(
     par_names, hkt_unpadded = read_gutkin_models(
         param1='NeIII3869/OII3727', # [NeIII]3869/[OII]3727
         param2='OIII5007/Hbeta', # [OIII]5007/H\beta
-        downsample={'Mup': 100, 'C': 10, 'xi': 0.3, 'logn': (1, 2, 3),
+        downsample={'Mup': 100, 'C/O': 1., 'xi': 0.3, 'logn': (1, 2, 3),
             'Z': (0.001, 0.004, 0.006, 0.014, 0.03),
             'logU': (-4., -3., -2., -1.),
             }
