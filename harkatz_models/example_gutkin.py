@@ -169,8 +169,8 @@ def example_plot_ssp_metal_logu_interp_roberta(
         handletextpad=0.3, labelspacing=0, handlelength=1.3, loc='lower left',
         columnspacing=0.9, borderaxespad=0.01, bbox_to_anchor=(-0., 1.))
     for l in legend.get_lines(): l.set_alpha(1); l.set_lw(4)
-    axes.set_xlabel('$\mathrm{[OIII]\lambda5007/H\\beta}$', fontsize=16)
-    axes.set_ylabel('$\mathrm{[NeIII]\lambda 3868/[OII]\lambda 3727}$', fontsize=16)
+    axes.set_xlabel('$\mathrm{[NeIII]\lambda 3868/[OII]\lambda 3727}$', fontsize=16)
+    axes.set_ylabel('$\mathrm{[OIII]\lambda5007/H\\beta}$', fontsize=16)
 
     for ax in fig.axes: ax.tick_params(axis='both', which='both', labelsize=14)
 
