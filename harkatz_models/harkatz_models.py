@@ -76,6 +76,9 @@ def read_harkatz_models(input_filename=None,
     
     """
 
+    print('\033[1;31mBe aware that there may be a bug or other problem with logn\033[0m')
+    print('\033[5;31mAdded flashing for your convenience\033[0m')
+
     if input_filename is None:
         data_path = os.path.dirname(__file__)
         input_filename = os.path.join(
