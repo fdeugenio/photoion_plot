@@ -1,6 +1,6 @@
 import sys
 from .ratio_table import *
-from .harkatz_models import *
+from .photoion_plot import *
 from .gutkin_models  import *
 from .example_plot import *
 from . import example_gutkin

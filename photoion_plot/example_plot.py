@@ -5,7 +5,7 @@ from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 from scipy.interpolate import interp1d
 
-from .harkatz_models import read_harkatz_models
+from .photoion_plot import read_harkatz_models
 from .plotting_utils import colorline
 
 
