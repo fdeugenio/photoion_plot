@@ -2,7 +2,7 @@
 
 Example use
 
-```python3 -c "import harkatz_models; harkatz_models.example_gutkin.example_plot_ssp_metal_logu_interp_roberta()"```
+```python3 -c "import photoion_plot; photoion_plot.example_gutkin.example_plot_ssp_metal_logu_interp_roberta()"```
 
 ![Model example](https://github.com/fdeugenio/photoion_plot/blob/master/photoion_plot/examples/gutkin_example_ne3o2.png?raw=true)
 
