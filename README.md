@@ -7,4 +7,5 @@ Example use
 ![Model example](https://github.com/fdeugenio/photoion_plot/blob/master/photoion_plot/examples/gutkin_example_ne3o2.png?raw=true)
 
 Citation policy. If you use the models of [Gutkin et al. (2016)](https://ui.adsabs.harvard.edu/abs/2016MNRAS.462.1757G/abstract) or [Feltre et al. (2016)](https://ui.adsabs.harvard.edu/abs/2016MNRAS.456.3354F/abstract), you must cite their work (linked).
-If you use this tool, I would appreciate a citation to [D'Eugenio et al. (2024)](https://ui.adsabs.harvard.edu/abs/2024A%26A...689A.152D/abstract)
+If you use this tool, I would appreciate a citation to [D'Eugenio et al. (2024)](https://ui.adsabs.harvard.edu/abs/2024A%26A...689A.152D/abstract).
+A (probably outdated) list of examples include [Tripodi et al. (2024)](https://ui.adsabs.harvard.edu/abs/2024A%26A...692A.184T/abstract), [Tripodi et al. (2025)](https://ui.adsabs.harvard.edu/abs/2024arXiv241204983T/abstract).
